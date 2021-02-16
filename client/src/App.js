@@ -1,7 +1,9 @@
+
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 import Footer from "./components/footer/footer";
+
 
 function App() {
   return (
