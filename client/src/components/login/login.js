@@ -1,5 +1,5 @@
 import React from 'react';
-import App from '../../App';
+// import App from '../../App';
 import {ReactComponent as Logo} from '';
 class Login extends React.Component {
         state = {
