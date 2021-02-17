@@ -1,4 +1,4 @@
-import '../Navbar/Navbar.css'
+import '../navbar/navbar.css'
 
 function Footer() {
     return(
