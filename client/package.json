@@ -5,8 +5,11 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "antd": "^4.12.3",
+    "formik": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-dropzone": "^11.3.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1"
