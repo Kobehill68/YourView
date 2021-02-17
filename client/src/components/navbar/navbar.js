@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { MenuItems } from "./MenuItems";
-import "./Navbar.css";
+import { menuItems } from "./menuItems";
+import "./navbar.css";
 import Logo from '../../assets/images/YourView (2).jpg'
 
 class Navbar extends Component {
@@ -12,7 +12,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="NavbarItems">
+      <nav className="navbarItems">
         <h1 className="navbar-logo">
             <img className="logo" src={Logo} alt='YourView Logo' width='100%' height='100%'></img>
           {/* react<i className="fab fa-react"></i> */}
@@ -23,7 +23,7 @@ class Navbar extends Component {
           ></i>
         </div>
         <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
-          {MenuItems.map((item, index) => {
+          {menuItems.map((item, index) => {
             return (
               <li key={index}>
                 <a className={item.cName} href={item.url}>
