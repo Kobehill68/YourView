@@ -1,7 +1,19 @@
-.body {
-    text-align: center;
+.box {
+    max-width: 1500px;
+    margin: 40px auto;
+    border: black 1px solid;
 }
 
-.image {
-    align-items: center;
+.imgbox * {
+    margin: 6px;
+    border: black 1px solid;
+    
+}
+
+.banner {
+   max-width: 400px;
+   padding: 10px; 
+   border: black 1px solid;
+   margin: 6px;
+   text-align: center;
 }
