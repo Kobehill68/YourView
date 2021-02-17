@@ -14,7 +14,7 @@ class Navbar extends Component {
     return (
       <nav className="navbarItems">
         <h1 className="navbar-logo">
-            <img className="logo" src={Logo} alt='YourView Logo' width='100%' height='100%'></img>
+            <img className="logo" src={Logo} alt='YourView Logo' width='100%' height='85%'></img>
           {/* react<i className="fab fa-react"></i> */}
         </h1>
         <div className="menu-icon" onClick={this.handleClick}>
