@@ -6,6 +6,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "antd": "^4.12.3",
+    "axios": "^0.21.1",
     "formik": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

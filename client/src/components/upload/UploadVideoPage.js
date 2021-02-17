@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Typography, Button, Form, message, Input, Icon } from 'antd';
 import Dropzone from 'react-dropzone';
+import axios from "axios"
 
 
 const { Title } = Typography;
@@ -142,7 +143,7 @@ function UploadVideo(props) {
                                 {...getRootProps()}
                             >
                                 <input {...getInputProps()} />
-                                <Icon type="plus" style={{ fontSize: '3rem' }} />
+                                {/* <Icon type="plus" style={{ fontSize: '3rem' }} /> */}
 
                             </div>
                         )}
@@ -192,4 +193,3 @@ function UploadVideo(props) {
     )
 }
 
-export default UploadVideo
