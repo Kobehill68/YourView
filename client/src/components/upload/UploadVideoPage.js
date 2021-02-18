@@ -193,3 +193,5 @@ function UploadVideo(props) {
     )
 }
 
+export default UploadVideo;
+
