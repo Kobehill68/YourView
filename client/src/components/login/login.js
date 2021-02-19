@@ -1,6 +1,7 @@
 import React from 'react';
 // import App from '../../App';
 import {ReactComponent as Logo} from '';
+import './login.css'; 
 class Login extends React.Component {
         state = {
             email: '',
