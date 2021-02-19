@@ -12,6 +12,8 @@ import Homepage from "./components/homepage/homepage";
 import UploadVideo from "./components/upload/UploadVideoPage";
 import DetailVideoPage from "./components/video/DetailVideoPage";
 import SubscriptionPage from "./components/subscription/SubscriptionPage";
+import Dashboard from "../src/components/login/dashboard/dashboard";
+import Preferences from "../src/components/login/preferences/preferences";
 
 
 function App() {
