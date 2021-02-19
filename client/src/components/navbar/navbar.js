@@ -3,7 +3,7 @@ import { menuItems } from "./menuItems";
 import "./navbar.css";
 import Logo from '../../assets/images/YourView (2).jpg'
 
-class Navbar extends Component {
+export default class Navbar extends Component {
   state = { clicked: false };
 
   handleClick = () => {
@@ -14,7 +14,7 @@ class Navbar extends Component {
     return (
       <nav className="navbarItems">
         <h1 className="navbar-logo">
-            <img className="logo" src={Logo} alt='YourView Logo' width='100%' height='85%'></img>
+          <img className="logo" src={Logo} alt='YourView Logo' width='100%' height='85%'></img>
           {/* react<i className="fab fa-react"></i> */}
         </h1>
         <div className="menu-icon" onClick={this.handleClick}>
@@ -38,4 +38,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+
