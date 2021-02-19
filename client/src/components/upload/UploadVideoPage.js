@@ -2,13 +2,8 @@ import React from 'react';
 import './upload.css';
 import Logo from '../../assets/images/YourView (2).jpg';
 
+function UploadVideo() {
 
-render() {
-    return (
-      //uploadvideo HTML
-    );
-  }
+}
 
-export default UploadVideoPage;
-
-
+export default UploadVideo
