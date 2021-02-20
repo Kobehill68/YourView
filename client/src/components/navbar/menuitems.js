@@ -16,7 +16,7 @@ export const menuItems = [
     },
     {
         title: 'Upload',
-        url: '/upload',
+        url: '/video/upload',
         cName: 'nav-links'
     },
     {

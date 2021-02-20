@@ -25,7 +25,7 @@ function App() {
       <div>
         <Navbar />
         <Switch>
-          <Route exact path="/upload" component={UploadVideo} />
+          <Route exact path="/video/upload" component={UploadVideo} />
           <Route exact path="/homepage" component={Homepage} />
           <Route exact path="/video" component={DetailVideoPage} />
           <Route exact path="/subscriptions" component={SubscriptionPage} />
