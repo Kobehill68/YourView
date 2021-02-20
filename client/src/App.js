@@ -25,6 +25,8 @@ function App() {
       <div>
         <Navbar />
         <Homepage />
+        <DetailVideoPage />
+        <SubscriptionPage />
         <Switch>
           <Route exact path="/upload" component={UploadVideo} />
           {/* <Route exact path="/" component={Login} />
