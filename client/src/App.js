@@ -1,8 +1,10 @@
 
 import React from "react";
 import {
-  BrowserRouter,
+  BrowserRouter as Router,
   Route,
+  Switch,
+  Redirect
 } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
 import "./App.css";
@@ -13,23 +15,26 @@ import SubscriptionPage from "./components/subscription/SubscriptionPage";
 import Dashboard from "../src/components/login/dashboard/dashboard";
 import Preferences from "../src/components/login/preferences/preferences";
 import UploadVideo from "./components/upload/uploadvideopage";
+// import Login from "./components/login/login"
 
 
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <BrowserRouter>
-        <Route exact strict path='/'>
-          <Homepage />
-        </Route>
-        <Route exact strict path="/upload">
-          <UploadVideo />
-        </Route>
-      </BrowserRouter>
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Homepage />
+        <Switch>
+          <Route exact path="/upload" component={UploadVideo} />
+          {/* <Route exact path="/" component={Login} />
+          <Route exact path="/login" component={Login} /> */}
+          {/* <Route exact path="/signup" component={ } /> */}
+          {/* <Redirect exact from="/login" to="/hompage" /> */}
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

@@ -4,7 +4,7 @@
     "password": null,
     "database": "dev",
     "host": "127.0.0.1",
-    "dialect": "mysql",
+    "dialect": "mongodb",
     "define": {
       "charset": "utf8",
       "timestamps": true,
@@ -16,7 +16,7 @@
     "password": null,
     "database": "test",
     "host": "127.0.0.1",
-    "dialect": "mysql",
+    "dialect": "mongodb",
     "define": {
       "charset": "utf8",
       "timestamps": true,
@@ -25,7 +25,7 @@
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql",
+    "dialect": "mongodb",
     "define": {
       "charset": "utf8",
       "timestamps": true,

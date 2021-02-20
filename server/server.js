@@ -27,11 +27,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Add routes, API
-app.use("/api/user", require("./routes/users"));
-app.use("/api/video", require("./routes/video"));
-app.use("/api/subscribe", require("./routes/subscribe"));
-app.use("/api/comment", require("./routes/comment"));
-app.use("/api/like", require("./routes/like"));
+app.use(routes);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
