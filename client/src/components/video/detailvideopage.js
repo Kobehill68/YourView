@@ -4,7 +4,7 @@ function DetailVideoPage() {
   return (
     <div className="box">
       <div className="banner">
-        <h3> Video </h3>
+        <h3> Videos </h3>
       </div>
       <div className="row">
         <div className="col-md-12 imgbox">
