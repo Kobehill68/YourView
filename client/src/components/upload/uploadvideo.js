@@ -11,6 +11,7 @@ function UploadVideo() {
     return (
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <Title>Upload Video</Title>
+            <Form></Form>
         </div>
         // <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
         //     <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
