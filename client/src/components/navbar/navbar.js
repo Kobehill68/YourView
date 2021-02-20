@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { menuItems } from "./enutems";
+import { menuItems } from "./menuitems";
 import "./navbar.css";
 import Logo from '../../assets/images/YourView (2).jpg'
 
