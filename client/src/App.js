@@ -10,11 +10,11 @@ import Navbar from "./components/navbar/navbar";
 import "./App.css";
 import Footer from "./components/footer/footer";
 import Homepage from "./components/homepage/homepage";
-import DetailVideoPage from "./components/video/DetailVideoPage";
-import SubscriptionPage from "./components/subscription/SubscriptionPage";
+import DetailVideoPage from "./components/video/etailideoage";
+import SubscriptionPage from "./components/subscription/ubscriptionage";
 import Dashboard from "../src/components/login/dashboard/dashboard";
 import Preferences from "../src/components/login/preferences/preferences";
-import UploadVideo from "./components/upload/uploadvideopage";
+import UploadVideo from "./components/upload/ploadideoage";
 // import Login from "./components/login/login"
 
 
