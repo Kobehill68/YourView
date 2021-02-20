@@ -14,8 +14,8 @@ import DetailVideoPage from "./components/video/detailvideopage";
 import SubscriptionPage from "./components/subscription/subscriptionpage";
 import Dashboard from "../src/components/login/dashboard/dashboard";
 import Preferences from "../src/components/login/preferences/preferences";
-import UploadVideo from "./components/upload/ploadideoage";
-// import Login from "./components/login/login"
+import UploadVideo from "./components/upload/uploadvideo";
+import Login from "./components/login/login";
 
 
 
@@ -24,13 +24,13 @@ function App() {
     <Router>
       <div>
         <Navbar />
-        <Homepage />
-        <DetailVideoPage />
-        <SubscriptionPage />
         <Switch>
           <Route exact path="/upload" component={UploadVideo} />
-          {/* <Route exact path="/" component={Login} />
-          <Route exact path="/login" component={Login} /> */}
+          <Route exact path="/homepage" component={Homepage} />
+          <Route exact path="/video" component={DetailVideoPage} />
+          <Route exact path="/subscription" component={SubscriptionPage} />
+          <Route exact path="/" component={Login} />
+          {/* <Route exact path="/login" component={Login} /> */}
           {/* <Route exact path="/signup" component={ } /> */}
           {/* <Redirect exact from="/login" to="/hompage" /> */}
         </Switch>
