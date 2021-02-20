@@ -1,39 +1,54 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 // import App from '../../App';
 // import { ReactComponent as Logo } from '';
 import './login.css';
-export default class Login extends Component {
-    state = {
-        email: '',
-        pwd: ''
+import PropTypes from 'prop-types';
+
+async function loginUser(credentials) {
+    return fetch('http://localhost:8080/login', {
+        method: 'POST' ,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+    .then(data => data.json())
+}
+
+export default function Login({setToken}) {
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
+    
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const token = await loginUser({
+            username,
+            password
+        });
+        setToken(token);
     }
-    handleChange = (e) => {
-        const { name, value } = e.target
-        this.setState({ [name]: value })
-    }
+    
+    return(
+        <div className="login-wrapper">
+      <h1>Please Log In</h1>
+      <form onSubmit = {handleSubmit}>
+        <label>
+          <p>Username</p>
+          <input type="text" onChange = {e => setUserName(e.target.value)} />
+        </label>
+        <label>
+          <p>Password</p>
+          <input type="password" onChange = {e => setPassword(e.target.value)} />
+        </label>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+    )
+}
 
-    handleSubmit = (e) => {
-
-    }
-
-    render() {
-        return (
-            <div>
-                <div>
-
-                    {/* <Logo /> */}
-
-                </div>
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <input type='email' name='email' placeholder='email...' required onChange={this.handleChange} />
-                        <input type='password' name='pwd' placeholder='password...' required onChange={this.handleChange} />
-                        <button onSubmit={this.handleSubmit}>Log In</button>
-                    </form>
-                </div>
-            </div>
-
-        )
-    }
+Login.PropTypes = {
+    setToken: PropTypes.func.isRequired
 }
 
