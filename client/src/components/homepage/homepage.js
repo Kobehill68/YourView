@@ -3,9 +3,9 @@ import "./homepage.css";
 function Homepage() {
   return (
     <div className="box">
-        <div className="banner">
-            <h3> Recommended</h3>
-        </div>
+      <div className="banner">
+        <h3> Recommended</h3>
+      </div>
       <div className="row">
         <div className="col-md-12 imgbox">
           <img
