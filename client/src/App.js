@@ -16,10 +16,18 @@ import Dashboard from "../src/components/login/dashboard/dashboard";
 import Preferences from "../src/components/login/preferences/preferences";
 import UploadVideo from "./components/upload/uploadvideo";
 import Login from "./components/login/login";
+import useState from "react";
 
 
 
 function App() {
+
+  const [token, setToken] = useState();
+
+    if(!token) {
+      return <Login setToken = {setToken} />
+    }
+
   return (
     <Router>
       <div>
