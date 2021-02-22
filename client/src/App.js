@@ -16,6 +16,7 @@ import Dashboard from "../src/components/login/dashboard/dashboard";
 import Preferences from "../src/components/login/preferences/preferences";
 import UploadVideo from "./components/upload/uploadvideo";
 import Login from "./components/login/login";
+import SignUp from "./components/signup/signup"
 
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/video" component={DetailVideoPage} />
           <Route exact path="/subscriptions" component={SubscriptionPage} />
           <Route exact path="/" component={Login} />
+          <Route exact path="/signup" component={SignUp} />
           {/* <Route exact path="/login" component={Login} /> */}
           {/* <Route exact path="/signup" component={ } /> */}
           {/* <Redirect exact from="/login" to="/hompage" /> */}
