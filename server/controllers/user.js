@@ -5,7 +5,7 @@ exports.getSingleUSer = (req, res) => {
 
     User.findOne({ name: username }).then((data) => {
         if (!data) {
-            return res.status(400).json({ error: true, msg: "USer not found" });
+            return res.status(400).json({ error: true, msg: "User not found" });
         }
         res.json({ data })
     });
