@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Api from '../../utils/testapi'
 
 const UseSignup = (callback, validate) => {
   const [values, setValues] = useState({
@@ -16,6 +17,7 @@ const UseSignup = (callback, validate) => {
       ...values,
       [name]: value,
     });
+    
   };
 
   const handleSubmit = (e) => {
@@ -23,6 +25,7 @@ const UseSignup = (callback, validate) => {
 
     setErrors(validate(values));
     setIsSubmitting(true);
+    Api.signup(values)
   };
 
   useEffect(() => {

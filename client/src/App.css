@@ -8,3 +8,9 @@
 .wrapper {
   padding: 20px;
 }
+
+#root {
+  padding-bottom: 60px;
+  position: relative;
+  min-height: 100vh;
+}
