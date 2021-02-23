@@ -18,11 +18,19 @@ import UploadVideo from "./components/upload/uploadvideo";
 import Login from "./components/login/login";
 import SignUp from "./components/signup/signup"
 
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
 
+function getToken() {
+  const tokenString = sessionStorage.getItem('token');
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token
+}
 
 function App() {
-  
-  const [token, setToken] = useState();
+  const token = getToken();
+
   
   if(!token) {
     return <Login setToken = {setToken} />
