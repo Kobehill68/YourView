@@ -1,4 +1,4 @@
-import "./detailvideopage.css";
+// import "./detailvideopage.css";
 
 function DetailVideoPage() {
   return (
