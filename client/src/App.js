@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,15 +12,20 @@ import Footer from "./components/footer/footer";
 import Homepage from "./components/homepage/homepage";
 import DetailVideoPage from "./components/video/detailvideopage";
 import SubscriptionPage from "./components/subscription/subscriptionpage";
-import Dashboard from "../src/components/login/dashboard/dashboard";
-import Preferences from "../src/components/login/preferences/preferences";
 import UploadVideo from "./components/upload/uploadvideo";
 import Login from "./components/login/login";
-import SignUp from "./components/signup/signup"
-
-
+import SignUp from "./components/signup/signup";
+import useToken from './hooks/useToken';
 
 function App() {
+ 
+  const {token, setToken} = useToken();
+
+  
+  if(!token) {
+    return <Login setToken = {setToken} />
+  }
+
   return (
     <Router>
       <div>
@@ -32,9 +37,9 @@ function App() {
           <Route exact path="/subscriptions" component={SubscriptionPage} />
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={SignUp} />
-          {/* <Route exact path="/login" component={Login} /> */}
+          { <Route exact path="/login" component={Login} /> }
           {/* <Route exact path="/signup" component={ } /> */}
-          {/* <Redirect exact from="/login" to="/hompage" /> */}
+          { <Redirect exact from="/login" to="/homepage" /> }
         </Switch>
         <Footer />
       </div>
