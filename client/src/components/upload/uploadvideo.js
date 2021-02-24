@@ -1,190 +1,153 @@
-import React, { useState, useEffect } from 'react';
-import './upload.css';
-import axios from 'axios';
-import { Typography, Button, Form, message, Input, Icon } from 'antd';
-import Dropzone from 'react-dropzone';
-import Logo from '../../assets/images/YourView (2).jpg';
+import React, { useState, useEffect } from "react";
+import { Button } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import SaveIcon from "@material-ui/icons/Save";
+import { useHistory } from "react-router-dom";
+import { isAuth } from "../../actions/auth";
+import { videoDetailsUpload, videoFileUpload } from "../../actions/video";
+import { getCookie } from "../../actions/auth";
+import Alert from "@material-ui/lab/Alert";
 
-const { Title } = Typography;
-const { TextArea } = Input;
+const UploadVideo = () => {
+    const [values, setValues] = useState({
+        title: "",
+        description: "",
+        formData: "",
+        error: "",
+        success: "",
+    });
 
-const Private = [
-    { value: 0, label: 'Private' },
-    { value: 0, label: 'Public' }
-];
+    const { title, description, formData, error, success } = values;
 
-const Catogory = [
-    { value: 0, label: "Film & Animation" },
-    { value: 0, label: "Autos & Vehicles" },
-    { value: 0, label: "Music" },
-    { value: 0, label: "Pets & Animals" },
-    { value: 0, label: "Sports" },
-]
+    const history = useHistory();
 
-function UploadVideo() {
-    const [title, setTitle] = useState("");
-    const [Description, setDescription] = useState("");
-    const [privacy, setPrivacy] = useState(0)
-    const [Categories, setCategories] = useState("Film & Animation")
-    const [FilePath, setFilePath] = useState("")
-    const [Duration, setDuration] = useState("")
-    const [Thumbnail, setThumbnail] = useState("")
-
-    const handleChangeTitle = (event) => {
-        setTitle(event.currentTarget.value)
-    }
-
-    const handleChangeDecsription = (event) => {
-        console.log(event.currentTarget.value)
-
-        setDescription(event.currentTarget.value)
-    }
-
-    const handleChangeOne = (event) => {
-        setPrivacy(event.currentTarget.value)
-    }
-
-    const handleChangeTwo = (event) => {
-        setCategories(event.currentTarget.value)
-    }
-
-    const onSubmit = (event) => {
-
-        event.preventDefault();
-
-        if (user.userData && !user.userData.isAuth) {
-            return alert('Please Log in First')
+    useEffect(() => {
+        if (!isAuth()) {
+            history.push("/");
         }
+        setValues({ ...values, formData: new FormData() });
+    }, [history]);
 
-        if (title === "" || Description === "" ||
-            Categories === "" || FilePath === "" ||
-            Duration === "" || Thumbnail === "") {
-            return alert('Please first fill all the fields')
-        }
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-        const variables = {
-            writer: user.userData._id,
-            title: title,
-            description: Description,
-            privacy: privacy,
-            filePath: FilePath,
-            category: Categories,
-            duration: Duration,
-            thumbnail: Thumbnail
-        }
-
-        axios.post('/api/video/upload', variables)
-            .then(response => {
-                if (response.data.success) {
-                    alert('video Uploaded Successfully')
-                    props.history.push('/')
+        videoFileUpload(formData, getCookie("token"))
+            .then((res) => {
+                if (res.error) {
+                    setValues({ ...values, error: res.error, success: "" });
                 } else {
-                    alert('Failed to upload video')
-                }
-            })
-
-    }
-
-    const onDrop = (files) => {
-
-        let formData = new FormData();
-        const config = {
-            header: { 'content-type': 'multipart/form-data' }
-        }
-        console.log(files)
-        formData.append("file", files[0])
-
-        axios.post('/api/video/uploadfiles', formData, config)
-            .then(response => {
-                if (response.data.success) {
-
-                    let variable = {
-                        filePath: response.data.filePath,
-                        fileName: response.data.fileName
-                    }
-                    setFilePath(response.data.filePath)
-
-                    axios.post('/api/video/thumbnail', variable)
-                        .then(response => {
-                            if (response.data.success) {
-                                setDuration(response.data.fileDuration)
-                                setThumbnail(response.data.thumbsFilePath)
+                    setValues({
+                        ...values,
+                        error: "",
+                        success: "",
+                    });
+                    const filePath = res.url;
+                    console.log(res.url);
+                    const writer = isAuth().name;
+                    videoDetailsUpload(
+                        { title, description, filePath, writer },
+                        getCookie("token")
+                    )
+                        .then((res) => {
+                            if (res.error) {
+                                setValues({ ...values, error: res.error, success: "" });
                             } else {
-                                alert('Failed to make the thumbnails');
+                                setValues({
+                                    ...values,
+                                    error: "",
+                                    success: "Video uploaded successfully",
+                                    title: "",
+                                    description: "",
+                                    formData: "",
+                                });
+                                history.push(`/video/watch/${res.video.videoId}`);
                             }
                         })
-
-
-                } else {
-                    alert('failed to save the video in server')
+                        .catch((err) => console.log(err));
                 }
             })
+            .catch((err) => console.log(err));
+    };
 
-    }
-
-
+    const handleChange = (name) => (event) => {
+        const value = name === "video" ? event.target.files[0] : event.target.value;
+        formData.set(name, value);
+        setValues({ ...values, [name]: value });
+    };
 
     return (
-        <div style={{ maxWidth: "700px", margin: '2rem auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <Title>Upload Video</Title>
+        <>
+            <div
+                style={{
+                    marginTop: "25px",
+                    marginLeft: "50px",
+                    width: "70%",
+                }}
+            >
+                <h1>Upload your video</h1>
+                <br />
+                <br />
+                <Alert severity="info">
+                    Make sure that the file is in <b>mp4</b> format otherwise your video
+            will not work.
+          </Alert>
+                <br />
+                <form onSubmit={handleSubmit}>
+                    <Button
+                        variant="contained"
+                        color="default"
+                        component="label"
+                        startIcon={<CloudUploadIcon />}
+                    >
+                        Upload Video
+              <input type="file" onChange={handleChange("video")} hidden />
+                    </Button>
+
+                    <br />
+                    <br />
+                    <br />
+                    {error && <Alert severity="error">{error}</Alert>}
+                    {success && <Alert severity="success">{success}</Alert>}
+                    <br />
+                    <br />
+                    <TextField
+                        label="Title"
+                        variant="outlined"
+                        value={title}
+                        helperText="Required"
+                        onChange={handleChange("title")}
+                        fullWidth
+                    />
+                    <br />
+                    <br />
+                    <br />
+                    <TextField
+                        label="Description"
+                        multiline
+                        rows={20}
+                        value={description}
+                        variant="outlined"
+                        onChange={handleChange("description")}
+                        fullWidth
+                    />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        type="submit"
+                        startIcon={<SaveIcon />}
+                    >
+                        Publish
+                    </Button>
+                </form>
             </div>
-            <Form onSubmit={onSubmit}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Dropzone
-                        onDrop={onDrop}
-                        multiple={false}
-                        maxSize={800000000}>
-                        {({ getRootProps, getInputProps }) => (
-                            <div style={{ width: '300px', height: '240px', border: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                {...getRootProps()}
-                            >
-                                <input {...getInputProps()} />
-                                {/* <Icon type="plus" style={{ fontsize: '3rem' }}></Icon> */}
+        </>
+    );
+};
 
-                            </div>
-                        )}
-                    </Dropzone>
-
-                    {Thumbnail !== "" &&
-                        <div>
-                            <img src={`http://localhost:3001/${Thumbnail}`} alt="haha" />
-                        </div>
-                    }
-                </div>
-                <br></br>
-                <label>Title</label>
-                <Input
-                    onChange={handleChangeTitle}
-                    value={title}
-                />
-                <br></br>
-                <label>Description</label>
-                <TextArea
-                    onChange={handleChangeDecsription}
-                    value={Description}
-                />
-                <br></br>
-                <select onChange={handleChangeOne}>
-                    {Private.map((item, index) => (
-                        <option key={index} value={item.value}>{item.label}</option>
-                    ))}
-                </select>
-                <br /><br />
-                <select onChange={handleChangeTwo}>
-                    {Catogory.map((item, index) => (
-                        <option key={index} value={item.label}>{item.label}</option>
-                    ))}
-                </select>
-                <br /><br />
-                <Button type="primary" size="large" onClick={onSubmit}>
-                    Submit
-                </Button>
-            </Form>
-        </div>
-
-    )
-
-}
-
-export default UploadVideo
+export default UploadVideo;

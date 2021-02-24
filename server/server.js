@@ -6,7 +6,6 @@ const cors = require('cors');
 const session = require('express-session');
 
 const routes = require('./routes');
-const passport = require('./config/passport');
 const corsOptions = require('./config/cors.js');
 
 const PORT = process.env.PORT || 3001;
@@ -17,8 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(helmet());
 app.use(session({ secret: 'TBD', resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(cors(corsOptions));
 
 // Serve up static assets (usually on heroku)

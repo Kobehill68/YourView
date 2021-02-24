@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { menuItems } from "./menuitems";
-import "./Navbar.css";
+import "./navbar.css";
 import Logo from '../../assets/images/YourView (2).jpg'
 
 export default class Navbar extends Component {
