@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
-const session = require('express-session');
+// const session = require('express-session');
 
 const routes = require('./routes');
 const corsOptions = require('./config/cors.js');
@@ -25,6 +25,30 @@ if (process.env.NODE_ENV === 'production') {
 
 // Add routes, API
 app.use(routes);
+
+app.get('/api/homepage', async (req, res) => {
+  const { resources } = await cloudinary.search
+    .expression('folder:project3')
+    .sort_by('public_id', 'desc')
+    .max_results(30)
+    .execute();
+
+  const publicIds = resources.map((file) => file.public_id);
+  res.send(publicIds);
+});
+app.post('/api/upload', async (req, res) => {
+  try {
+    const fileStr = req.body.data;
+    const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+      upload_preset: 'ml_default',
+    });
+    console.log(uploadResponse);
+    res.json({ msg: 'yaya' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

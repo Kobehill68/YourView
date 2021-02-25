@@ -84,9 +84,9 @@ const Login = () => {
           />
           <br />
           <br />
-          <a href="/signup" style={{ textDecoration: "none", color: "blue" }}>
+          <Link to="/signup" style={{ textDecoration: "none", color: "blue" }}>
             Create account
-          </a>
+          </Link>
           <input type="submit" name="sign-in" value="Sign In" />
         </form>
       </div>
