@@ -3,8 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
-// const session = require('express-session');
-
+// const session = require('express-session')
+const { cloudinary } = require('./utils/cloudinary');
 const routes = require('./routes');
 const corsOptions = require('./config/cors.js');
 
@@ -13,9 +13,9 @@ const app = express();
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 app.use(helmet());
-app.use(session({ secret: 'TBD', resave: true, saveUninitialized: true }));
+// app.use(session({ secret: 'TBD', resave: true, saveUninitialized: true }));
 app.use(cors(corsOptions));
 
 // Serve up static assets (usually on heroku)
@@ -26,9 +26,9 @@ if (process.env.NODE_ENV === 'production') {
 // Add routes, API
 app.use(routes);
 
-app.get('/api/homepage', async (req, res) => {
+app.get('/api/images', async (req, res) => {
   const { resources } = await cloudinary.search
-    .expression('folder:project3')
+    .expression('folder:dev-sets')
     .sort_by('public_id', 'desc')
     .max_results(30)
     .execute();
@@ -40,7 +40,7 @@ app.post('/api/upload', async (req, res) => {
   try {
     const fileStr = req.body.data;
     const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-      upload_preset: 'ml_default',
+      upload_preset: 'dev-sets',
     });
     console.log(uploadResponse);
     res.json({ msg: 'yaya' });

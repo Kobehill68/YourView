@@ -53,14 +53,14 @@ export default function UploadVideo() {
     };
     return (
         <div>
-            <h1 className="title">Upload an Video</h1>
+            <h1 className="title">Upload Media</h1>
             <Alert msg={errMsg} type="danger" />
             <Alert msg={successMsg} type="success" />
             <form onSubmit={handleSubmitFile} className="form">
                 <input
                     id="fileInput"
                     type="file"
-                    name="video"
+                    name="image"
                     onChange={handleFileInputChange}
                     value={fileInputState}
                     className="form-input"

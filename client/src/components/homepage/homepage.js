@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
-import "./homepage.css";
-import VideoCard from "./videocard"
-import { listVideos } from "../../actions/video"
-import moment from "moment"
+import React, { useEffect, useState } from 'react';
+import { Image } from 'cloudinary-react';
 
-export default function Home() {
+export default function Homepage() {
   const [imageIds, setImageIds] = useState();
   const loadImages = async () => {
     try {
@@ -20,7 +17,7 @@ export default function Home() {
   }, []);
   return (
     <div>
-      <h1 className="title">Recomended</h1>
+      <h1 className="title">Media</h1>
       <div className="gallery">
         {imageIds &&
           imageIds.map((imageId, index) => (

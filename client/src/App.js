@@ -23,8 +23,8 @@ const App = () => {
         <Switch>
           <Route exact path="/upload" component={UploadVideo} />
           <Route exact path="/homepage" component={Homepage} />
-          <Route exact path="/video" component={DetailVideoPage} />
-          <Route exact path="/subscriptions" component={SubscriptionPage} />
+          {/* <Route exact path="/video" component={DetailVideoPage} />
+          <Route exact path="/subscriptions" component={SubscriptionPage} /> */}
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
           {/* {<Route exact path="/login" component={Login} />} */}
