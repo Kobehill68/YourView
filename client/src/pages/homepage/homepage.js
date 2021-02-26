@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'cloudinary-react';
 
-export default function Homepage() {
+export default function Home() {
   const [imageIds, setImageIds] = useState();
   const loadImages = async () => {
     try {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Alert from '../alert/alert';
+import Alert from '../../components/alert/alert';
 
 export default function UploadVideo() {
     const [fileInputState, setFileInputState] = useState('');
