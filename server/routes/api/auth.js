@@ -1,15 +1,10 @@
-const router = express.Router();
-const express = require("express");
-const { signup, signin, signout } = require('../../controllers/auth');
+const router = require('express').Router();
+const passport = require('../../config/passport');
+const authController = require('../../controllers/auth');
 
-const { runValidation } = require("../validators");
-const {
-    userSignupValidator,
-    userSigninValidator,
-} = require("../validators/auth");
+router.use(passport.authenticate('local'));
 
-router.post("/signup", userSignupValidator, runValidation, signup);
-router.post("/signin", userSigninValidator, runValidation, signin);
-router.get("/signout", signout);
+// Matches with '/api/auth/login'
+router.route('/login').post(authController.login);
 
 module.exports = router;

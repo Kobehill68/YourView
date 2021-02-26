@@ -3,8 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
-// const session = require('express-session')
-const { cloudinary } = require('./utils/cloudinary');
+const session = require('express-session')
+const { cloudinary } = require('./utils/cloudinary.js');
 const routes = require('./routes');
 const corsOptions = require('./config/cors.js');
 
@@ -15,7 +15,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: '50mb' }));
 app.use(helmet());
-// app.use(session({ secret: 'TBD', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'TBD', resave: true, saveUninitialized: true }));
 app.use(cors(corsOptions));
 
 // Serve up static assets (usually on heroku)
