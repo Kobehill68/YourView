@@ -1,109 +1,35 @@
-import "./homepage.css";
+import React, { useEffect, useState } from 'react';
+import { Image } from 'cloudinary-react';
 
-function Homepage() {
+export default function Homepage() {
+  const [imageIds, setImageIds] = useState();
+  const loadImages = async () => {
+    try {
+      const res = await fetch('/api/images');
+      const data = await res.json();
+      setImageIds(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    loadImages();
+  }, []);
   return (
-    <div className="box">
-      <div className="banner">
-        <h3> Recommended</h3>
-      </div>
-      <div className="row">
-        <div className="col-md-12 imgbox">
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-          <img
-            className="image"
-            src="https://via.placeholder.com/200"
-            alt="test"
-          ></img>
-
-
-        </div>
+    <div>
+      <h1 className="title">Media</h1>
+      <div className="gallery">
+        {imageIds &&
+          imageIds.map((imageId, index) => (
+            <Image
+              key={index}
+              cloudName={process.env.CLOUDINARY_NAME}
+              publicId={imageId}
+              width="300"
+              crop="scale"
+            />
+          ))}
       </div>
     </div>
   );
 }
-
-export default Homepage;

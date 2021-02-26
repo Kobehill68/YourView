@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { useHistory, Link } from "react-router-dom";
 import { isAuth, signup } from "../../actions/auth";
 import Alert from "@material-ui/lab/Alert";
-import Logo from "../../assets/images/YourView (2).jpg"
+
 
 const Signup = () => {
     const [name, setName] = useState("");
@@ -91,9 +91,9 @@ const Signup = () => {
                     />
                     <br />
                     <br />
-                    <a href="/signin" style={{ textDecoration: "none", color: "blue" }}>
+                    <Link to="/" style={{ textDecoration: "none", color: "blue" }}>
                         Aldready have a account ?
-                    </a>
+                    </Link>
                     <input type="submit" name="sign-in" value="Sign Up" />
                 </form>
             </div>
