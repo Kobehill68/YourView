@@ -45,7 +45,7 @@ export default function UploadVideo() {
             });
             setFileInputState('');
             setPreviewSource('');
-            setSuccessMsg('Video uploaded successfully');
+            setSuccessMsg('Media uploaded successfully');
         } catch (err) {
             console.error(err);
             setErrMsg('Something went wrong!');
