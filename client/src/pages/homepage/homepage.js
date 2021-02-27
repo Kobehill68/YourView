@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image } from 'cloudinary-react';
+import { Image } from "cloudinary-react";
 
 export default function Home() {
   const [imageIds, setImageIds] = useState();
@@ -23,7 +23,7 @@ export default function Home() {
           imageIds.map((imageId, index) => (
             <Image
               key={index}
-              cloudName={process.env.CLOUDINARY_NAME}
+              cloudName={process.env.REACT_APP_CLOUDINARY_NAME}
               publicId={imageId}
               width="300"
               crop="scale"

@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use(express.json({ limit: '10mb' }));
 app.use(helmet());
 app.use(session({ secret: 'TBD', resave: true, saveUninitialized: true }));
 app.use(cors(corsOptions));
@@ -28,7 +28,7 @@ app.use(routes);
 
 app.get('/api/images', async (req, res) => {
   const { resources } = await cloudinary.search
-    .expression('folder:dev-sets')
+    .expression('folder:YourView')
     .sort_by('public_id', 'desc')
     .max_results(30)
     .execute();
@@ -40,7 +40,7 @@ app.post('/api/upload', async (req, res) => {
   try {
     const fileStr = req.body.data;
     const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-      upload_preset: 'dev-sets',
+      upload_preset: 'yourview',
     });
     console.log(uploadResponse);
     res.json({ msg: 'yaya' });
