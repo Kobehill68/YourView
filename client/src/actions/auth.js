@@ -18,6 +18,7 @@ export const signin = (data) => {
 };
 
 export const signup = (user) => {
+    console.log(user)
     return fetch(`${API_URL}/user/signup`, {
         method: "POST",
         headers: {

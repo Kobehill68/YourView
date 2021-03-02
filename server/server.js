@@ -7,6 +7,8 @@ const session = require('express-session')
 const { cloudinary } = require('./utils/cloudinary.js');
 const routes = require('./routes');
 const corsOptions = require('./config/cors.js');
+const User = require('./models/User');
+const { userInfo } = require('os');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -22,6 +24,8 @@ app.use(cors(corsOptions));
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
+
+
 
 // Add routes, API
 app.use(routes);
@@ -49,6 +53,16 @@ app.post('/api/upload', async (req, res) => {
     res.status(500).json({ err: 'Something went wrong' });
   }
 });
+
+app.post('/api/user/signup', async (req,res) => {
+  try{const newUser = await User.create(req.body)
+    console.log(newUser)
+     res.json("success");}
+    catch(err) {
+      console.log(err)
+       res.json(err);
+    }
+})
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
