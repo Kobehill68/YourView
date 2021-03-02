@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from "cloudinary-react";
+import "./homepage.css";
 
 export default function Home() {
   const [imageIds, setImageIds] = useState();

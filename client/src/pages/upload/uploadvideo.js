@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Alert from '../../components/alert/alert';
+import "./upload.css"
 
 export default function UploadVideo() {
     const [fileInputState, setFileInputState] = useState('');
@@ -53,7 +54,7 @@ export default function UploadVideo() {
     };
     return (
         <div>
-            <h1 className="title">Upload Media</h1>
+            <h1 className="titles">Upload Media</h1>
             <Alert msg={errMsg} type="danger" />
             <Alert msg={successMsg} type="success" />
             <form onSubmit={handleSubmitFile} className="form">
