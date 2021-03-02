@@ -1,20 +1,13 @@
-/* .box {
-    max-width: 1500px;
-    margin: 40px auto;
-    border: black 1px solid;
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-gap: 2rem;
+    justify-content: center;
 }
 
-.imgbox * {
-    margin: 6px;
-    border: black 1px solid;
-    
+.title{
+    margin-top: 1rem;
+    align-self: center;
+    margin-left: 10rem;
+    margin-bottom: 1rem;
 }
-
-.banner {
-   max-width: 400px;
-   padding: 10px; 
-   border: black 1px solid;
-   margin: 6px;
-   text-align: center;
-} */
-
