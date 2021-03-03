@@ -1,10 +1,10 @@
+const { cloudinary } = require('./utils/cloudinary.js');
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
 const session = require('express-session')
-const { cloudinary } = require('./utils/cloudinary.js');
 const routes = require('./routes');
 const corsOptions = require('./config/cors.js');
 const User = require('./models/User');
@@ -40,6 +40,7 @@ app.get('/api/images', async (req, res) => {
   const publicIds = resources.map((file) => file.public_id);
   res.send(publicIds);
 });
+
 app.post('/api/upload', async (req, res) => {
   try {
     const fileStr = req.body.data;
@@ -54,14 +55,16 @@ app.post('/api/upload', async (req, res) => {
   }
 });
 
-app.post('/api/user/signup', async (req,res) => {
-  try{const newUser = await User.create(req.body)
+app.post('/api/user/signup', async (req, res) => {
+  try {
+    const newUser = await User.create(req.body)
     console.log(newUser)
-     res.json("success");}
-    catch(err) {
-      console.log(err)
-       res.json(err);
-    }
+    res.json("success");
+  }
+  catch (err) {
+    console.log(err)
+    res.json(err);
+  }
 })
 
 // The "catchall" handler: for any request that doesn't
