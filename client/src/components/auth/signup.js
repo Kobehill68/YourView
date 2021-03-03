@@ -18,7 +18,11 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const userToBeMade = { name, email, password };
+        const userToBeMade = { 
+            name: name, 
+            email: email,
+            password: password 
+        };
 
         signup(userToBeMade)
             .then((res) => {
