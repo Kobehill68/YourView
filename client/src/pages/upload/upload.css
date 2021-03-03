@@ -1,0 +1,32 @@
+.form {
+    margin-bottom: 2rem;
+    margin-left: 20rem;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent-color);
+    background-color: var(--accent-color);
+    color: var(--btn-text-color);
+    border-radius: 5px;
+    transition: 250ms;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    border: 1px solid var(--accent-color);
+    background-color: var(--btn-text-color);
+    color: var(--acent-color);
+}
+
+.titles{ 
+    margin-top: 1rem;
+    align-self: center;
+    margin-left: 10rem;
+    margin-bottom: 1rem;
+}

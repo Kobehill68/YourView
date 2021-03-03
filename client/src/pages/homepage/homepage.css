@@ -1,0 +1,13 @@
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-gap: 2rem;
+    justify-content: center;
+}
+
+.title{
+    margin-top: 1rem;
+    align-self: center;
+    margin-left: 10rem;
+    margin-bottom: 1rem;
+}
