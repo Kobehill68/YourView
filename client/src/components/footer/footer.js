@@ -1,9 +1,9 @@
 import '../navbar/navbar.css'
 
 function Footer() {
-    return(
+    return (
         <div className='navbarItems footer'>
-            <p>
+            <p className='copy'>
                 &copy; 2021 YourView
             </p>
         </div>

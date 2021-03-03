@@ -66,3 +66,7 @@
   bottom: 0;
   right: 0;
 }
+
+.copy{
+  text-decoration: wavy;
+}
