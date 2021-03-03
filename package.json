@@ -2,6 +2,9 @@
   "name": "YourView",
   "version": "1.0.0",
   "description": "YourView",
+  "engines": {
+    "node": "14.15.0"
+  },
   "author": "yourview",
   "license": "MIT",
   "main": "server/server.js",
