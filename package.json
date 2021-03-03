@@ -1,13 +1,13 @@
 {
-  "name": "TBD",
+  "name": "YourView",
   "version": "1.0.0",
-  "description": "TBD",
-  "author": "TBD",
+  "description": "YourView",
+  "author": "yourview",
   "license": "MIT",
   "main": "server/server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TBD"
+    "url": "git+https://github.com/YourView"
   },
   "homepage": "TBD",
   "scripts": {
